@@ -1,28 +1,17 @@
-const { request, response } = require('express')
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({extended: false }))
+app.set('views', __dirname + '/templates')
+app.set('view engine', 'twig')
 
-// GET / HTTP/1.1
-app.get('/',(request, response) => {
-    response.send('Homepage! GET...')
+
+app.get('/', (req, res) => {
+    res.render('home', { name: 'World!', 'users': [
+        {name: 'Axandria Hamilton', email: 'axandria@gmail.com'}
+    ]})
 })
 
-// POST / HTTP/1.1
-app.post('/', (request, response) => {
-    response.send('Homepage! POST...')
-})
 
-// GET /products/nike-large-white-shoe HTTP/1.1
-app.get('/products/:productName', (request, response) => {
-    response.send('Product Page! Product name:'+ request.params.productName)
-})
-
-// GET /products/683-nike-large-white-shoe HTTP/1.1
-app.get('/products/:productId-productName', (request, response) => {
-    response.send('Product Page! Product name:'+ request.params.productName +
-                  'Product Id:'+ request.params.productId
-    
-    )
-})
 
 app.listen(3000)
