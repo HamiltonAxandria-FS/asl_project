@@ -7,7 +7,7 @@ app.set('view engine', 'twig')
 
 
 app.get('/', (req, res) => {
-    res.render('home', { name: 'World!', 'users': [
+    res.render('views/home', { name: 'World!', 'users': [
         {name: 'Axandria Hamilton', email: 'axandria@gmail.com'}
     ]})
 })
